@@ -1,6 +1,3 @@
-# attendance_management_system
-
-
 # Faculty Attendance Management System (Mini Project)
 
 ## Overview
