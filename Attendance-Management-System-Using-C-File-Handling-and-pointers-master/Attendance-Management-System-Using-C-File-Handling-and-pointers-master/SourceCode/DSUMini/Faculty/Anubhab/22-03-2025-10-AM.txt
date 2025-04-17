@@ -1,0 +1,24 @@
+Subject-Name=DLDA		COURSECODE=CSE101	Subject-Incharge=Anubhab Mohapatra
+25DCO01	ANGEL_PRIYA			Present
+25DCO02	MANOJ			Absent
+25DCO01	ASANI			Present
+25DCO01	SOURAV1			Present
+25DCO01	SOURAV2			Present
+25DCO01	TUSHAR			Present
+25DCO01	AMIT			Present
+25DCO01	SOMNATH			Present
+25DCO01	BADRINATH			Absent
+25DCO01	AMAN			Absent
+26CO01	ANUBHAB			Present
+26CO01	RAM			Present
+26CO01	SITA			Present
+26CO01	MONA			Absent
+26CO01	SANIA			Present
+26CO01	HARSHITA			Present
+26CO01	SOMA			Absent
+26CO01	RIYA			Present
+26CO01	MAYA			Present
+26CO01	DEBA			Absent
+Attendance Completed of Class SE.CO Batch-2025-2026
+Total number of student Present	14	on 22-03-2025 at 10:06:AM
+Total number of student Absent 	6	on 22-03-2025 at 10:06:AM
