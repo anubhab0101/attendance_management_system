@@ -1,13 +1,59 @@
-#include<stdio.h> 						//using also to remove files
-#include<string.h> 					 	//using to compare strings and concating
-#include<time.h>  						//using to generate time
-#include<conio.h>						//using to make the screen hold
-#include<dirent.h>  					//using for directory
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<time.h>
+#include<dirent.h>
+
+#ifdef _WIN32
+    #include<conio.h>
+    #include<direct.h>
+    #define MKDIR(path) _mkdir(path)
+    #define RMDIR(path) _rmdir(path)
+#else
+    #include<termios.h>
+    #include<unistd.h>
+    #include<sys/stat.h>
+    #define MKDIR(path) mkdir(path, 0777)
+    #define RMDIR(path) rmdir(path)
+
+    int getch(void) {
+        struct termios oldattr, newattr;
+        int ch;
+        tcgetattr( STDIN_FILENO, &oldattr );
+        newattr = oldattr;
+        newattr.c_lflag &= ~( ICANON | ECHO );
+        tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
+        ch = getchar();
+        tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
+        return ch;
+    }
+#endif
+
 #define esc 27   
 #define EOL '\n'
 
+
+void create_dir_if_not_exists(const char* path) {
+    #ifdef _WIN32
+        _mkdir(path);
+    #else
+        mkdir(path, 0777);
+    #endif
+}
+
+void init_directories() {
+    create_dir_if_not_exists("..//DSUMini");
+    create_dir_if_not_exists("..//DSUMini/Faculty");
+    create_dir_if_not_exists("..//DSUMini/Faculty/Anubhab");
+    create_dir_if_not_exists("..//DSUMini/Faculty/AAM_SIR");
+    create_dir_if_not_exists("..//DSUMini/Faculty/PPA_SIR");
+    create_dir_if_not_exists("..//DSUMini/Faculty/Prabhu");
+    create_dir_if_not_exists("..//DSUMini/Faculty/Aman");
+}
+
 int main()
 {
+	init_directories();
 	int x=00,y=00;   					//initializing variables for counter
 	char id_ag[]="25CGUAM";			//faculties id
 	char id_jks[]="25CGUPPA";
@@ -166,7 +212,7 @@ int main()
 			fp1=fopen("..//DSUMini/Stud_Db.txt","r");				//creating a file ptr and opening the specified path file in read mode
 			
 			
-			mkdir(d1);												//making a temp directory
+			MKDIR(d1);												//making a temp directory
 			
 			FILE *fp;
 			fp=fopen(c1,"a+");									//making a file ptr and opening a temp file with read and append mode
@@ -194,7 +240,7 @@ int main()
 						if(ch==EOL)
 						fprintf(fp,"\t\t%s",present);
 						if(ch==EOL)
-						printf(present);
+						printf("%s", present);
 						break;
 					}
 					}
@@ -207,7 +253,7 @@ int main()
 						if(ch==EOL)
 						fprintf(fp,"\t\t%s",absent);
 						if(ch==EOL)
-						printf(absent);
+						printf("%s", absent);
 						break;
 					}
 					}
@@ -253,7 +299,7 @@ int main()
 				printf("\nPlease select only above mentioned option\n");
 					goto labelitrl1;
 			}
-				rmdir(d1);
+				RMDIR(d1);
 				label4:printf("\nPress b to go back to main menu or press e to Logout\n");
 				ch4=getch();
 				if(ch4=='b')
@@ -517,7 +563,7 @@ int main()
 			fp1=fopen("..//DSUMini/Stud_Db.txt","r");
 			
 			
-			mkdir(d1);
+			MKDIR(d1);
 			
 			FILE *fp;
 			fp=fopen(c1,"a+");
@@ -542,7 +588,7 @@ int main()
 						if(ch==EOL)
 						fprintf(fp,"\t\t%s",present);
 						if(ch==EOL)
-						printf(present);
+						printf("%s", present);
 						break;
 					}
 					}
@@ -555,7 +601,7 @@ int main()
 						if(ch==EOL)
 						fprintf(fp,"\t\t%s",absent);
 						if(ch==EOL)
-						printf(absent);
+						printf("%s", absent);
 						break;
 					}
 					}
@@ -602,7 +648,7 @@ int main()
 					printf("\nPlease select only above mentioned option\n");
 					goto labelitrl2;
 			}
-				rmdir(d1);
+				RMDIR(d1);
 				
 				label14:printf("\nPress b to go back to main menu or press e to Logout\n");
 				ch4=getch();
@@ -868,7 +914,7 @@ int main()
 			fp1=fopen("..//DSUMini/Stud_Db.txt","r");
 			
 			
-			mkdir(d1);
+			MKDIR(d1);
 			
 			FILE *fp;
 			fp=fopen(c1,"a+");
@@ -893,7 +939,7 @@ int main()
 						if(ch==EOL)
 						fprintf(fp,"\t\t%s",present);
 						if(ch==EOL)
-						printf(present);
+						printf("%s", present);
 						break;
 					}
 					}
@@ -906,7 +952,7 @@ int main()
 						if(ch==EOL)
 						fprintf(fp,"\t\t%s",absent);
 						if(ch==EOL)
-						printf(absent);
+						printf("%s", absent);
 						break;
 					}
 					}
@@ -953,7 +999,7 @@ int main()
 					printf("\nPlease select only above mentioned option\n");
 					goto labelitrl3;
 			}
-				rmdir(d1);
+				RMDIR(d1);
 			
 				label24:printf("\nPress b to go back to main menu or press e to Logout\n");
 				ch4=getch();
@@ -1216,7 +1262,7 @@ int main()
 			fp1=fopen("..//DSUMini/Stud_Db.txt","r");
 			
 			
-			mkdir(d1);
+			MKDIR(d1);
 			
 			FILE *fp;
 			fp=fopen(c1,"a+");
@@ -1241,7 +1287,7 @@ int main()
 						if(ch==EOL)
 						fprintf(fp,"\t\t%s",present);
 						if(ch==EOL)
-						printf(present);
+						printf("%s", present);
 						break;
 					}
 					}
@@ -1254,7 +1300,7 @@ int main()
 						if(ch==EOL)
 						fprintf(fp,"\t\t%s",absent);
 						if(ch==EOL)
-						printf(absent);
+						printf("%s", absent);
 						break;
 					}
 					}
@@ -1302,7 +1348,7 @@ int main()
 					printf("\nPlease select only above mentioned option\n");
 					goto labelitrl4;
 			}
-				rmdir(d1);
+				RMDIR(d1);
 			
 				label34:printf("\nPress b to go back to main menu or press e to Logout\n");
 				ch4=getch();
@@ -1565,7 +1611,7 @@ int main()
 			fp1=fopen("..//DSUMini/Stud_Db.txt","r");
 			
 			
-			mkdir(d1);
+			MKDIR(d1);
 			
 			FILE *fp;
 			fp=fopen(c1,"a+");
@@ -1590,7 +1636,7 @@ int main()
 						if(ch==EOL)
 						fprintf(fp,"\t\t%s",present);
 						if(ch==EOL)
-						printf(present);
+						printf("%s", present);
 						break;
 					}
 					}
@@ -1603,7 +1649,7 @@ int main()
 						if(ch==EOL)
 						fprintf(fp,"\t\t%s",absent);
 						if(ch==EOL)
-						printf(absent);
+						printf("%s", absent);
 						break;
 					}
 					}
@@ -1650,7 +1696,7 @@ int main()
 					printf("\nPlease select only above mentioned option\n");
 					goto labelitrl5;
 			}
-				rmdir(d1);
+				RMDIR(d1);
 			
 				label44:printf("\nPress b to go back to main menu or press e to Logout\n");
 				ch4=getch();
